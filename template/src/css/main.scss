@@ -1,0 +1,13 @@
+@import "normalize.css/normalize.css";
+@import "html5-reset/assets/css/reset.css";
+@import "valiables";
+@import "functions";
+
+html{
+  font-size: $baseFontSize;
+}
+
+body{
+  @include fontSize(16px);
+}
+

@@ -1,0 +1,9 @@
+@mixin fontSize($fontSize){
+  font-size: #{$fontSize / $baseFontSize}rem;
+}
+
+@mixin fixedMargin($fontSize, $marginBottom, $lineHeight){
+  @include fontSize($fontSize);
+  margin-bottom:$marginBottom - (($fontSize * $lineHeight - $fontSize) / 2);
+  line-height:$lineHeight;
+}
