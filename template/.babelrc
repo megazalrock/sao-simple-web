@@ -1,3 +1,7 @@
 {
-  "presets": ["es2015", "es2016"]
+  "presets": [
+    ["env", {
+      "targets": <%- JSON.stringify(browsers) %>
+    }]
+  ]
 }

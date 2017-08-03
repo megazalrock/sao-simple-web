@@ -6,7 +6,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import plumber from 'gulp-plumber';
 import config from '../../config';
 import Util from '../Util';
-import moduleImporter from 'sass-module-importer';
 
 let hasError = false;
 
@@ -16,20 +15,17 @@ gulp.task(
     .pipe(sourcemaps.init())
     .pipe(plumber({
       errorHandler(err) {
-        //sass.logError(err);
         console.log(err.messageFormatted);
         Util.notify('SCSS Build Error');
         hasError = true;
         this.emit('end');
       },
     }))
-    .pipe(sass({
-      importer: moduleImporter(),
-    }))
+    .pipe(sass())
     .pipe(postcss([
       autoprefixier(config.browsers),
     ]))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(sourcemaps.write(config.sourceMapDir))
     .pipe(gulp.dest(config.cssDistDir))
     .on('finish', () => {
       if (!hasError) {
